@@ -1,6 +1,6 @@
 [submodule "src/services"]
 	path = src/services
-	url = git@github.com:cloudfoundry/vcap-services.git
+	url = git@github.com:cdavisafc/vcap-services.git
 [submodule "src/tools"]
 	path = src/tools
 	url = git@github.com:cloudfoundry/vcap-tools.git
