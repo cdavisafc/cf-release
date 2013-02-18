@@ -7,7 +7,7 @@ release:
   version: latest
 
 compilation:
-  workers: 4
+  workers: 1
   cloud_properties:
     ram: 4096
     disk: 8096
@@ -27,11 +27,11 @@ networks:
    subnets:
    - reserved:
      - 10.13.219.2 - 10.13.219.106
-     - 10.13.219.151 - 10.13.219.160
      - 10.13.219.161 - 10.13.219.170
      - 10.13.219.210 - 10.13.219.254
      static:
      - 10.13.219.107 - 10.13.219.144
+     - 10.13.219.151 - 10.13.219.160
      range: 10.13.219.0/24
      gateway: 10.13.219.1
      dns:
@@ -43,7 +43,7 @@ networks:
 resource_pools:
  - name: infrastructure
    network: default
-   size: 11
+   size: 12
    stemcell:
     name: bosh-stemcell
     version: 0.6.7
@@ -488,12 +488,12 @@ jobs:
 
  - name: cassandra_node
    template: cassandra_node
-   instances: 1
+   instances: 2
    resource_pool: infrastructure
    networks:
    - name: default
      static_ips:
-     - 10.13.219.143
+     - 10.13.219.151-10.13.219.152
 
  - name: cassandra_gateway
    template: cassandra_gateway
@@ -700,6 +700,7 @@ properties:
 
   cassandra:
     port: 9160
+    seeds: 10.13.219.151
 
   serialization_data_server:
     upload_token: aaaCOGvTlXT7l8IzAgOHxMXurBrG364k
